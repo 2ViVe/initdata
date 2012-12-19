@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="base.main_partner" model="res.partner">
+            <field name="name">Organo Gold Europe</field>
+            <field name="ref">BV</field>
+        </record>
+
+        <record id="base.main_company" model="res.company">
+            <field name="name">Organo Gold Europe</field>
+            <field name="parent_id" ref="company_HoldingsLtdHK"/>
+            <field name="partner_id" ref="base.main_partner"/>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="rml_footer1"></field>
+            <field name="rml_footer2"></field>
+        </record>
+
+        <record model="res.users" id="user_bv">
+            <field name="name">BV Test</field>
+            <field name="login">bv</field>
+            <field name="password">bv</field>
+            <field name="signature">BV Test User</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="menu_id" ref="base.action_menu_admin"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('base.group_extended'), ref('base.group_partner_manager'), ref('base.group_sale_manager'), ref('stock.group_stock_manager'), ref('base.group_multi_company'), ref('account.group_account_manager')])]"/>
+        </record>
+
+    <!--
+        Resource: stock.location
+    -->
+        <record id="stock.stock_location_company" model="stock.location">
+            <field name="name">BV Default</field>
+        </record>
+
+
+    <!--
+        Resource: stock.warehouse
+    -->
+        <record id="stock.warehouse0" model="stock.warehouse">
+            <field name="name">BV Default</field>
+        </record>
+
+    <!--
+        Resource: sale.shop
+    -->
+        <record id="sale.shop" model="sale.shop">
+            <field name="name">BV Default</field>
+        </record>
+
+    </data>
+</openerp>

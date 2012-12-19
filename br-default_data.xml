@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+    <!-- Basic Company  -->
+        <record id="partner_Brazil" model="res.partner">
+            <field name="name">Organo Gold Brazil</field>
+            <field name="ref">BZ</field>
+            <!-- Address and Company ID will be set later -->
+            <field name="address" eval="[]"/>
+            <field name="company_id" eval="None"/>
+            <field name="customer" eval="False"/>
+        </record>
+        <record id="address_Brazil" model="res.partner.address">
+            <field name="partner_id" ref="partner_Brazil"/>
+            <field name="type">default</field>
+            <field name="country_id" ref="base.br"/>
+            <field name="company_id" eval="None"/>
+        </record>
+
+        <!-- Currencies -->
+        <record id="BRL_Brazil" model="res.currency">
+            <field name="name">BRL</field>
+            <field name="symbol">$</field>
+            <field name="rounding">0.01</field>
+            <field name="accuracy">4</field>
+            <!-- Company ID will be set later -->
+            <field name="company_id" eval="None"/>
+        </record>
+        <record id="rateBRL" model="res.currency.rate">
+            <field name="rate">1.0</field>
+            <field name="currency_id" ref="BRL_Brazil"/>
+            <field eval="time.strftime('%Y-01-01')" name="name"/>
+        </record>
+
+        <record id="company_Brazil" model="res.company">
+            <field name="name">Organo Gold Brazil</field>
+            <field name="partner_id" ref="partner_Brazil"/>
+            <field name="parent_id" ref="company_HoldingsLtdHK"/>
+            <field name="rml_footer1"></field>
+            <field name="rml_footer2"></field>
+            <field name="currency_id" ref="BRL_Brazil"/>
+        </record>
+
+        <record model="res.users" id="user_br">
+            <field name="name">BR Test</field>
+            <field name="login">br</field>
+            <field name="password">br</field>
+            <field name="signature">BR Test User</field>
+            <field name="company_id" ref="company_Brazil"/>
+            <field name="menu_id" ref="base.action_menu_admin"/>
+            <field name="company_ids" eval="[(4, ref('company_Brazil'))]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('base.group_extended'), ref('base.group_partner_manager'), ref('base.group_sale_manager'), ref('stock.group_stock_manager'), ref('account.group_account_manager')])]"/>
+        </record>
+
+        <record id="partner_Brazil" model="res.partner">
+            <field name="company_id" ref="company_Brazil"/>
+        </record>
+        <record id="address_Brazil" model="res.partner.address">
+            <field name="company_id" ref="company_Brazil"/>
+        </record>
+        <record id="BRL_Brazil" model="res.currency">
+            <field name="company_id" ref="company_Brazil"/>
+        </record>
+
+    <!--
+        Resource: stock.location
+    -->
+        <record id="stock_location_Brazil" model="stock.location">
+            <field name="name">BR Default</field>
+            <field name="usage">view</field>
+            <field name="location_id" ref="stock.stock_location_locations"/>
+            <field name="company_id" ref="company_Brazil"/>
+        </record>
+
+        <record id="stock_location_output_Brazil" model="stock.location">
+            <field name="name">Output</field>
+            <field name="location_id" ref="stock_location_Brazil"/>
+            <field name="usage">internal</field>
+            <field name="chained_location_type">customer</field>
+            <field name="chained_auto_packing">transparent</field>
+            <field name="chained_picking_type">out</field>
+            <field name="chained_journal_id" ref="stock.journal_delivery"/>
+            <field model="res.company" name="company_id" search="[('name', 'ilike', 'Brazil')]" use="id"/>
+        </record>
+        <record id="stock_location_stock_Brazil" model="stock.location">
+            <field name="name">Stock</field>
+            <field name="location_id" ref="stock_location_Brazil"/>
+            <field name="company_id" ref="company_Brazil"/>
+        </record>
+
+    <!--
+        Resource: stock.warehouse
+    -->
+        <record id="warehouse0_Brazil" model="stock.warehouse">
+            <field name="name">BR Default</field>
+            <field name="lot_input_id" ref="stock_location_stock_Brazil"/>
+            <field name="lot_stock_id" ref="stock_location_stock_Brazil"/>
+            <field name="lot_output_id" ref="stock_location_output_Brazil"/>
+            <field name="company_id" ref="company_Brazil"/>
+        </record>
+
+    <!--
+        Resource: sale.shop
+    -->
+        <record id="shop_Brazil" model="sale.shop">
+            <field name="company_id" ref="company_Brazil"/>
+            <field name="warehouse_id" ref="warehouse0_Brazil"/>
+            <field name="payment_default_id" ref="account.account_payment_term"/>
+            <!--field name="pricelist_id" ref="product.list0"/-->
+            <field name="name">BR Default</field>
+        </record>
+
+    </data>
+</openerp>

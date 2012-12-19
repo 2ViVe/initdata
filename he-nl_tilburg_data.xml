@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+    <!--
+        Resource: stock.location
+    -->
+        <record id="stock_location_Tilburg" model="stock.location">
+            <field name="name">NL Tilburg</field>
+            <field name="usage">view</field>
+            <field name="location_id" ref="stock.stock_location_locations"/>
+            <field name="company_id" ref="company_HoldingsEuropeLtd"/>
+        </record>
+
+        <record id="stock_location_output_Tilburg" model="stock.location">
+            <field name="name">Output</field>
+            <field name="location_id" ref="stock_location_Tilburg"/>
+            <field name="usage">internal</field>
+            <field name="chained_location_type">customer</field>
+            <field name="chained_auto_packing">transparent</field>
+            <field name="chained_picking_type">out</field>
+            <field name="chained_journal_id" ref="stock.journal_delivery"/>
+            <field name="company_id" ref="company_HoldingsEuropeLtd"/>
+        </record>
+        <record id="stock_location_stock_Tilburg" model="stock.location">
+            <field name="name">Stock</field>
+            <field name="location_id" ref="stock_location_Tilburg"/>
+            <field name="company_id" ref="company_HoldingsEuropeLtd"/>
+        </record>
+
+    <!--
+        Resource: stock.warehouse
+    -->
+        <record id="warehouse0_Tilburg" model="stock.warehouse">
+            <field name="name">NL Tilburg</field>
+            <field name="lot_input_id" ref="stock_location_stock_Tilburg"/>
+            <field name="lot_stock_id" ref="stock_location_stock_Tilburg"/>
+            <field name="lot_output_id" ref="stock_location_output_Tilburg"/>
+            <field name="company_id" ref="company_HoldingsEuropeLtd"/>
+        </record>
+
+    <!--
+        Resource: sale.shop
+    -->
+        <record id="shop_Tilburg" model="sale.shop">
+            <field name="company_id" ref="company_HoldingsEuropeLtd"/>
+            <field name="warehouse_id" ref="warehouse0_Tilburg"/>
+            <field name="payment_default_id" ref="account.account_payment_term"/>
+            <!--field name="pricelist_id" ref="product.list0"/ -->
+            <field name="name">NL Tilburg</field>
+        </record>
+
+    </data>
+</openerp>

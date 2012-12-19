@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+    <!-- Basic Company  -->
+        <record id="partner_Canada" model="res.partner">
+            <field name="name">Organo Gold Canada</field>
+            <field name="ref">CA</field>
+            <!-- Address and Company ID will be set later -->
+            <field name="address" eval="[]"/>
+            <field name="company_id" eval="None"/>
+            <field name="customer" eval="False"/>
+        </record>
+        <record id="address_Canada" model="res.partner.address">
+            <field name="partner_id" ref="partner_Canada"/>
+            <field name="type">default</field>
+            <field name="country_id" ref="base.ca"/>
+            <field name="company_id" eval="None"/>
+        </record>
+
+        <!-- Currencies -->
+        <record id="CAD_Canada" model="res.currency">
+            <field name="name">CAD</field>
+            <field name="symbol">$</field>
+            <field name="rounding">0.01</field>
+            <field name="accuracy">4</field>
+            <!-- Company ID will be set later -->
+            <field name="company_id" eval="None"/>
+        </record>
+        <record id="rateCAD" model="res.currency.rate">
+            <field name="rate">1.0</field>
+            <field name="currency_id" ref="CAD_Canada"/>
+            <field eval="time.strftime('%Y-01-01')" name="name"/>
+        </record>
+
+        <record id="company_Canada" model="res.company">
+            <field name="name">Organo Gold Canada</field>
+            <field name="partner_id" ref="partner_Canada"/>
+            <field name="rml_footer1"></field>
+            <field name="rml_footer2"></field>
+            <field name="currency_id" ref="CAD_Canada"/>
+        </record>
+
+        <record model="res.users" id="user_ca">
+            <field name="name">CA Test</field>
+            <field name="login">ca</field>
+            <field name="password">ca</field>
+            <field name="signature">CA Test User</field>
+            <field name="company_id" ref="company_Canada"/>
+            <field name="menu_id" ref="base.action_menu_admin"/>
+            <field name="company_ids" eval="[(4, ref('company_Canada'))]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('base.group_extended'), ref('base.group_partner_manager'), ref('base.group_sale_manager'), ref('stock.group_stock_manager'), ref('account.group_account_manager')])]"/>
+        </record>
+
+        <record id="partner_Canada" model="res.partner">
+            <field name="company_id" ref="company_Canada"/>
+        </record>
+        <record id="address_Canada" model="res.partner.address">
+            <field name="company_id" ref="company_Canada"/>
+        </record>
+        <record id="CAD_Canada" model="res.currency">
+            <field name="company_id" ref="company_Canada"/>
+        </record>
+
+    <!--
+        Resource: stock.location
+    -->
+        <record id="stock_location_BritishColumbia" model="stock.location">
+            <field name="name">CA British Columbia</field>
+            <field name="usage">view</field>
+            <field name="location_id" ref="stock.stock_location_locations"/>
+            <field name="company_id" ref="company_Canada"/>
+        </record>
+
+        <record id="stock_location_output_BritishColumbia" model="stock.location">
+            <field name="name">Output</field>
+            <field name="location_id" ref="stock_location_BritishColumbia"/>
+            <field name="usage">internal</field>
+            <field name="chained_location_type">customer</field>
+            <field name="chained_auto_packing">transparent</field>
+            <field name="chained_picking_type">out</field>
+            <field name="chained_journal_id" ref="stock.journal_delivery"/>
+            <field name="company_id" ref="company_Canada"/>
+        </record>
+        <record id="stock_location_stock_BritishColumbia" model="stock.location">
+            <field name="name">Stock</field>
+            <field name="location_id" ref="stock_location_BritishColumbia"/>
+            <field name="company_id" ref="company_Canada"/>
+        </record>
+
+    <!--
+        Resource: stock.warehouse
+    -->
+        <record id="warehouse0_BritishColumbia" model="stock.warehouse">
+            <field name="name">CA British Columbia</field>
+            <field name="lot_input_id" ref="stock_location_stock_BritishColumbia"/>
+            <field name="lot_stock_id" ref="stock_location_stock_BritishColumbia"/>
+            <field name="lot_output_id" ref="stock_location_output_BritishColumbia"/>
+            <field name="company_id" ref="company_Canada"/>
+        </record>
+
+    <!--
+        Resource: sale.shop
+    -->
+        <record id="shop_BritishColumbia" model="sale.shop">
+            <field name="company_id" ref="company_Canada"/>
+            <field name="warehouse_id" ref="warehouse0_BritishColumbia"/>
+            <field name="payment_default_id" ref="account.account_payment_term"/>
+            <!--field name="pricelist_id" ref="product.list0"/ -->
+            <field name="name">CA British Columbia</field>
+        </record>
+
+    </data>
+</openerp>
