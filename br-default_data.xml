@@ -5,7 +5,7 @@
     <!-- Basic Company  -->
         <record id="partner_Brazil" model="res.partner">
             <field name="name">Organo Gold Brazil</field>
-            <field name="ref">BZ</field>
+            <field name="ref">BR</field>
             <!-- Address and Company ID will be set later -->
             <field name="address" eval="[]"/>
             <field name="company_id" eval="None"/>
