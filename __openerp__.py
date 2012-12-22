@@ -38,7 +38,7 @@ The init. data module to manage shops and warehouses.
     'author': 'Andy Lu',
     'website': 'http://weibo.com/210102899',
     'images': [],
-    'depends': ['base', 'account', 'stock', 'sale'],
+    'depends': ['base', 'account', 'stock', 'purchase', 'sale'],
     'init_xml': [],
     'update_xml': [
 
