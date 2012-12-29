@@ -22,7 +22,7 @@
 
 {
     'name': 'Shop & Warehouse Init. Data',
-    'version': '1.0',
+    'version': '1.2',
     'category': 'Sales Management',
     "sequence": 14,
     'complexity': "easy",
@@ -33,12 +33,14 @@ The init. data module to manage shops and warehouses.
         * Create location, warehouse
         * Create shop
         * Create test account
+        * add depend purchase module, setup purchase manager  v1.1
+        * add depend hr moudle, setup hr manager, erp manager v1.2
 ======================================================
     """,
     'author': 'Andy Lu',
     'website': 'http://weibo.com/210102899',
     'images': [],
-    'depends': ['base', 'account', 'stock', 'purchase', 'sale'],
+    'depends': ['base', 'account', 'stock', 'purchase', 'sale', 'hr'],
     'init_xml': [],
     'update_xml': [
 
