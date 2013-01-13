@@ -21,8 +21,8 @@
 ##############################################################################
 
 {
-    'name': 'Shop & Warehouse Init. Data',
-    'version': '1.2',
+    'name': 'OG Init. Data',
+    'version': '1.3',
     'category': 'Sales Management',
     "sequence": 14,
     'complexity': "easy",
@@ -33,17 +33,18 @@ The init. data module to manage shops and warehouses.
         * Create location, warehouse
         * Create shop
         * Create test account
-        * add depend purchase module, setup purchase manager  v1.1
-        * add depend hr moudle, setup hr manager, erp manager v1.2
+        * Add depend purchase module, setup purchase manager  v1.1
+        * Add depend hr moudle, setup hr manager, erp manager v1.2
+        * Add depend mrp moudle, setup mrp manager            v1.3
+        * Add ext_id for product, partner
 ======================================================
     """,
     'author': 'Andy Lu',
     'website': 'http://weibo.com/210102899',
     'images': [],
-    'depends': ['base', 'account', 'stock', 'purchase', 'sale', 'hr', 'hr_payroll_account'],
+    'depends': ['base', 'account', 'stock', 'purchase', 'sale', 'hr', 'mrp'],
     'init_xml': [],
     'update_xml': [
-
         'hkh-default_data.xml',
         'bv-update_data.xml',
         'cy-default_data.xml',
@@ -81,6 +82,7 @@ The init. data module to manage shops and warehouses.
 
         'he-nl_tilburg_data.xml',
 
+        'product_view.xml',
     ],
     'demo_xml': [],
     'test': [

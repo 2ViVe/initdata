@@ -21,7 +21,11 @@
 ##############################################################################
 
 #----------------------------------------------------------
-# Init Shop & Warehouse
+# Setup the modules and Create company
+# Create Shop & Warehouse
+# Create Currency & Default Rate
+# Create test user
 #----------------------------------------------------------
+import product
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

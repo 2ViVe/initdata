@@ -27,13 +27,24 @@
             <field name="location_id" ref="stock_location_Nevada"/>
             <field name="company_id" ref="company_USA"/>
         </record>
+        <record id="stock_location_input_Nevada" model="stock.location">
+            <field name="name">Input</field>
+            <field name="location_id" ref="stock_location_Nevada"/>
+            <field name="usage">internal</field>
+            <field name="chained_location_type">fixed</field>
+            <field name="chained_location_id" ref="stock_location_stock_Nevada"/>
+            <field name="chained_auto_packing">manual</field>
+            <field name="chained_picking_type">internal</field>
+            <!-- field name="chained_journal_id" ref="stock.journal_delivery"/ -->
+            <field name="company_id" ref="company_USA"/>
+        </record>
 
     <!--
         Resource: stock.warehouse
     -->
         <record id="warehouse0_Nevada" model="stock.warehouse">
             <field name="name">US Nevada</field>
-            <field name="lot_input_id" ref="stock_location_stock_Nevada"/>
+            <field name="lot_input_id" ref="stock_location_input_Nevada"/>
             <field name="lot_stock_id" ref="stock_location_stock_Nevada"/>
             <field name="lot_output_id" ref="stock_location_output_Nevada"/>
             <field name="company_id" ref="company_USA"/>

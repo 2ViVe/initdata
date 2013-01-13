@@ -27,13 +27,24 @@
             <field name="location_id" ref="stock_location_Sarawak"/>
             <field name="company_id" ref="company_Malaysia"/>
         </record>
+        <record id="stock_location_input_Sarawak" model="stock.location">
+            <field name="name">Input</field>
+            <field name="location_id" ref="stock_location_Sarawak"/>
+            <field name="usage">internal</field>
+            <field name="chained_location_type">fixed</field>
+            <field name="chained_location_id" ref="stock_location_stock_Sarawak"/>
+            <field name="chained_auto_packing">manual</field>
+            <field name="chained_picking_type">internal</field>
+            <!-- field name="chained_journal_id" ref="stock.journal_delivery"/ -->
+            <field name="company_id" ref="company_Malaysia"/>
+        </record>
 
     <!--
         Resource: stock.warehouse
     -->
         <record id="warehouse0_Sarawak" model="stock.warehouse">
             <field name="name">MY Sarawak</field>
-            <field name="lot_input_id" ref="stock_location_stock_Sarawak"/>
+            <field name="lot_input_id" ref="stock_location_input_Sarawak"/>
             <field name="lot_stock_id" ref="stock_location_stock_Sarawak"/>
             <field name="lot_output_id" ref="stock_location_output_Sarawak"/>
             <field name="company_id" ref="company_Malaysia"/>
