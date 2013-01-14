@@ -19,7 +19,7 @@
 
         <!-- Currencies -->
         <record id="USD_HoldingsLtdHK" model="res.currency">
-            <field name="name">USD</field>
+            <field name="name">USD(OG)</field>
             <field name="symbol">$</field>
             <field name="rounding">0.01</field>
             <field name="accuracy">4</field>
@@ -29,7 +29,7 @@
         <record id="rateUSD_HKH" model="res.currency.rate">
             <field name="rate">1.0</field>
             <field name="currency_id" ref="USD_HoldingsLtdHK"/>
-            <field eval="time.strftime('%Y-01-01')" name="name"/>
+            <field eval="time.strftime('2008-01-01')" name="name"/>
         </record>
 
         <record id="company_HoldingsLtdHK" model="res.company">
@@ -62,8 +62,35 @@
         <record id="address_HoldingsLtdHK" model="res.partner.address">
             <field name="company_id" ref="company_HoldingsLtdHK"/>
         </record>
-        <record id="USD_HoldingsLtdHK" model="res.currency">
+        <!-- record id="USD_HoldingsLtdHK" model="res.currency">
             <field name="company_id" ref="company_HoldingsLtdHK"/>
+        </record -->
+
+ 	<!--
+		Resource: product.price.type
+	-->
+        <record id="product.list_price" model="product.price.type">
+            <field name="name">Public Price($1)</field>
+            <field name="field">list_price</field>
+            <field name="currency_id" ref="USD_HoldingsLtdHK"/>
+        </record>
+        <record id="product.standard_price" model="product.price.type">
+            <field name="name">Cost Price($1)</field>
+            <field name="field">standard_price</field>
+            <field name="currency_id" ref="USD_HoldingsLtdHK"/>
+        </record>
+	<!--
+		Price list
+	-->
+        <record id="product.list0" model="product.pricelist">
+            <field name="name">Public Pricelist($1)</field>
+            <field name="type">sale</field>
+            <field name="currency_id" ref="USD_HoldingsLtdHK"/>
+        </record>
+        <record id="purchase.list0" model="product.pricelist">
+            <field name="name">Default Purchase Pricelist($1)</field>
+            <field name="type">purchase</field>
+            <field name="currency_id" ref="USD_HoldingsLtdHK"/>
         </record>
 
     <!--

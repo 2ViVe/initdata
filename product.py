@@ -33,6 +33,8 @@ class product_product(osv.osv):
     _columns = {
         'ext_id': fields.integer('Website Product'),
     }
+    def init(self, cr):
+        cr.execute('''update res_currency set active = false where name not in ('EUR','USD') and company_id = 1 ''')
 
 product_product()
 

@@ -19,26 +19,25 @@
         </record>
 
         <!-- Currencies -->
-        <record id="USD_Mexico" model="res.currency">
+        <!-- record id="USD_Mexico" model="res.currency">
             <field name="name">USD</field>
             <field name="symbol">$</field>
             <field name="rounding">0.01</field>
             <field name="accuracy">4</field>
-            <!-- Company ID will be set later -->
             <field name="company_id" eval="None"/>
         </record>
         <record id="rateUSD_Mexico" model="res.currency.rate">
             <field name="rate">1.0</field>
             <field name="currency_id" ref="USD_Mexico"/>
             <field eval="time.strftime('%Y-01-01')" name="name"/>
-        </record>
+        </record -->
 
         <record id="company_Mexico" model="res.company">
             <field name="name">Organo Gold Mexico</field>
             <field name="partner_id" ref="partner_Mexico"/>
             <field name="rml_footer1"></field>
             <field name="rml_footer2"></field>
-            <field name="currency_id" ref="USD_Mexico"/>
+            <field name="currency_id" ref="USD_HoldingsLtdHK"/>
         </record>
 
         <record model="res.users" id="user_mx">
@@ -58,9 +57,9 @@
         <record id="address_Mexico" model="res.partner.address">
             <field name="company_id" ref="company_Mexico"/>
         </record>
-        <record id="USD_Mexico" model="res.currency">
+        <!-- record id="USD_Mexico" model="res.currency">
             <field name="company_id" ref="company_Mexico"/>
-        </record>
+        </record -->
 
     <!--
         Resource: stock.location

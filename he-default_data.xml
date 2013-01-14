@@ -17,20 +17,19 @@
             <field name="company_id" eval="None"/>
         </record>
 
-        <!-- Currencies -->
-        <record id="EUR_HoldingsEuropeLtd" model="res.currency">
+        <!-- Currencies, share parent company currency-->
+        <!-- record id="EUR_HoldingsEuropeLtd" model="res.currency">
             <field name="name">EUR</field>
             <field name="symbol">€</field>
             <field name="rounding">0.01</field>
             <field name="accuracy">4</field>
-            <!-- Company ID will be set later -->
             <field name="company_id" eval="None"/>
         </record>
         <record id="rateEUR_HoldingsEuropeLtd" model="res.currency.rate">
             <field name="rate">1.0</field>
             <field name="currency_id" ref="EUR_HoldingsEuropeLtd"/>
             <field eval="time.strftime('%Y-01-01')" name="name"/>
-        </record>
+        </record -->
 
         <record id="company_HoldingsEuropeLtd" model="res.company">
             <field name="name">Organo Gold Holdings Europe Ltd</field>
@@ -38,7 +37,8 @@
             <field name="parent_id" ref="base.main_company"/>
             <field name="rml_footer1"></field>
             <field name="rml_footer2"></field>
-            <field name="currency_id" ref="EUR_HoldingsEuropeLtd"/>
+            <!-- field name="currency_id" ref="EUR_HoldingsEuropeLtd"/ -->            
+            <field name="currency_id" ref="base.EUR"/>
         </record>
 
         <record model="res.users" id="user_he">
@@ -58,9 +58,9 @@
         <record id="address_HoldingsEuropeLtd" model="res.partner.address">
             <field name="company_id" ref="company_HoldingsEuropeLtd"/>
         </record>
-        <record id="EUR_HoldingsEuropeLtd" model="res.currency">
+        <!-- record id="EUR_HoldingsEuropeLtd" model="res.currency">
             <field name="company_id" ref="company_HoldingsEuropeLtd"/>
-        </record>
+        </record -->
 
     <!--
         Resource: stock.location

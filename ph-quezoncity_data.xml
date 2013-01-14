@@ -30,7 +30,7 @@
         <record id="ratePHP" model="res.currency.rate">
             <field name="rate">1.0</field>
             <field name="currency_id" ref="PHP_Philippines"/>
-            <field eval="time.strftime('%Y-01-01')" name="name"/>
+            <field eval="time.strftime('2008-01-01')" name="name"/>
         </record>
 
         <record id="company_Philippines" model="res.company">
@@ -59,6 +59,13 @@
             <field name="company_id" ref="company_Philippines"/>
         </record>
         <record id="PHP_Philippines" model="res.currency">
+            <field name="company_id" ref="company_Philippines"/>
+        </record>                
+        <record id="USD_PHP" model="res.currency">
+            <field name="name">PHP_USD</field>
+            <field name="symbol">$</field>
+            <field name="rounding">0.01</field>
+            <field name="accuracy">4</field>
             <field name="company_id" ref="company_Philippines"/>
         </record>
 

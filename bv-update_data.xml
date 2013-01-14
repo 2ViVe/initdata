@@ -15,6 +15,31 @@
             <field name="rml_footer1"></field>
             <field name="rml_footer2"></field>
         </record>
+        
+        <record id="base.EUR" model="res.currency">
+            <field name="name">EUR</field>
+            <field name="symbol">€</field>
+            <field name="rounding">0.01</field>
+            <field name="accuracy">4</field>
+            <field name="company_id" eval="None"/>
+        </record><record id="base.rateEUR" model="res.currency.rate">
+        	<field name="currency_id" ref="base.EUR"/>
+            <field name="rate">1.0</field>
+            <field eval="time.strftime('2008-01-01')" name="name"/>
+        </record>
+                
+        <record id="base.USD" model="res.currency">
+            <field name="name">EUR_USD</field>
+            <field name="symbol">$</field>
+            <field name="rounding">0.01</field>
+            <field name="accuracy">4</field>
+            <field name="company_id" eval="None"/>
+        </record>
+        <record id="base.rateUSD" model="res.currency.rate">
+        	<field name="currency_id" ref="base.USD"/>
+            <field name="rate">0.0</field>
+            <field eval="time.strftime('2008-01-01')" name="name"/>
+        </record> 
 
         <record model="res.users" id="user_bv">
             <field name="name">BV Test</field>

@@ -30,7 +30,7 @@
         <record id="rateBRL" model="res.currency.rate">
             <field name="rate">1.0</field>
             <field name="currency_id" ref="BRL_Brazil"/>
-            <field eval="time.strftime('%Y-01-01')" name="name"/>
+            <field eval="time.strftime('2008-01-01')" name="name"/>
         </record>
 
         <record id="company_Brazil" model="res.company">
@@ -60,6 +60,13 @@
             <field name="company_id" ref="company_Brazil"/>
         </record>
         <record id="BRL_Brazil" model="res.currency">
+            <field name="company_id" ref="company_Brazil"/>
+        </record>
+        <record id="USD_BR" model="res.currency">
+            <field name="name">BR_USD</field>
+            <field name="symbol">$</field>
+            <field name="rounding">0.01</field>
+            <field name="accuracy">4</field>
             <field name="company_id" ref="company_Brazil"/>
         </record>
 

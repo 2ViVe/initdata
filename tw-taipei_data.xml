@@ -30,7 +30,7 @@
         <record id="rateTWD" model="res.currency.rate">
             <field name="rate">1.0</field>
             <field name="currency_id" ref="TWD_Taiwan"/>
-            <field eval="time.strftime('%Y-01-01')" name="name"/>
+            <field eval="time.strftime('2008-01-01')" name="name"/>
         </record>
 
         <record id="company_Taiwan" model="res.company">
@@ -59,6 +59,13 @@
             <field name="company_id" ref="company_Taiwan"/>
         </record>
         <record id="TWD_Taiwan" model="res.currency">
+            <field name="company_id" ref="company_Taiwan"/>
+        </record>   
+        <record id="USD_TW" model="res.currency">
+            <field name="name">TW_USD</field>
+            <field name="symbol">$</field>
+            <field name="rounding">0.01</field>
+            <field name="accuracy">4</field>
             <field name="company_id" ref="company_Taiwan"/>
         </record>
 

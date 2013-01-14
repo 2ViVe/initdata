@@ -19,19 +19,18 @@
         </record>
 
         <!-- Currencies -->
-        <record id="EUR_Cyprus" model="res.currency">
+        <!-- record id="EUR_Cyprus" model="res.currency">
             <field name="name">EUR</field>
             <field name="symbol">€</field>
             <field name="rounding">0.01</field>
             <field name="accuracy">4</field>
-            <!-- Company ID will be set later -->
             <field name="company_id" eval="None"/>
         </record>
         <record id="rateEUR_CY" model="res.currency.rate">
             <field name="rate">1.0</field>
             <field name="currency_id" ref="EUR_Cyprus"/>
-            <field eval="time.strftime('%Y-01-01')" name="name"/>
-        </record>
+            <field eval="time.strftime('2008-01-01')" name="name"/>
+        </record -->
 
         <record id="company_Cyprus" model="res.company">
             <field name="name">Organo Gold Cyprus</field>
@@ -39,7 +38,7 @@
             <field name="parent_id" ref="company_HoldingsLtdHK"/>
             <field name="rml_footer1"></field>
             <field name="rml_footer2"></field>
-            <field name="currency_id" ref="EUR_Cyprus"/>
+            <field name="currency_id" ref="base.EUR"/>
         </record>
 
         <record model="res.users" id="user_cy">
@@ -59,9 +58,9 @@
         <record id="address_Cyprus" model="res.partner.address">
             <field name="company_id" ref="company_Cyprus"/>
         </record>
-        <record id="EUR_Cyprus" model="res.currency">
+        <!-- record id="EUR_Cyprus" model="res.currency">
             <field name="company_id" ref="company_Cyprus"/>
-        </record>
+        </record -->
 
     <!--
         Resource: stock.location
