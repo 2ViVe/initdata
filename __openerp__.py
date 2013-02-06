@@ -22,7 +22,7 @@
 
 {
     'name': 'OG Init. Data',
-    'version': '1.3',
+    'version': '1.4',
     'category': 'Sales Management',
     "sequence": 14,
     'complexity': "easy",
@@ -37,6 +37,8 @@ The init. data module to manage shops and warehouses.
         * Add depend hr moudle, setup hr manager, erp manager v1.2
         * Add depend mrp moudle, setup mrp manager            v1.3
         * Add ext_id for product, partner
+        * Add ext_id for partner in views and name_get        v1.4
+          Modify the Input location from internal to production
 ======================================================
     """,
     'author': 'Andy Lu',

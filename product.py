@@ -42,9 +42,25 @@ class res_partner(osv.osv):
     _inherit = "res.partner"
 
     _columns = {
-        'ext_id': fields.integer('Website Product'),
+        'ext_id': fields.integer('Website Partner'),
     }
 
+    def name_get(self, cr, uid, ids, context=None):        
+        if context is None:
+            context = {}
+        if not len(ids):
+            return []
+        if context.get('show_ref'):
+            rec_name = 'ref'
+        else:
+            rec_name = 'name'
+
+        for r in self.read(cr, uid, ids, ['ext_id', rec_name], context):
+            if r['ext_id']:
+                res = [(r['id'], ' '.join([ '[', str(r['ext_id']), ']', r[rec_name] ]))]
+            else:
+                res = [(r['id'], r[rec_name]) ]
+        return res
 res_partner()
 
 class procurement_order(osv.osv):

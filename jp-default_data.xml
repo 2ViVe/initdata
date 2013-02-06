@@ -89,7 +89,7 @@
         <record id="stock_location_input_Japan" model="stock.location">
             <field name="name">Input</field>
             <field name="location_id" ref="stock_location_Japan"/>
-            <field name="usage">internal</field>
+            <field name="usage">production</field>
             <field name="chained_location_type">fixed</field>
             <field name="chained_location_id" ref="stock_location_stock_Japan"/>
             <field name="chained_auto_packing">manual</field>
