@@ -54,12 +54,13 @@ class res_partner(osv.osv):
             rec_name = 'ref'
         else:
             rec_name = 'name'
-
+        res = []
         for r in self.read(cr, uid, ids, ['ext_id', rec_name], context):
             if r['ext_id']:
-                res = [(r['id'], ' '.join([ '[', str(r['ext_id']), ']', r[rec_name] ]))]
+                name = '[%s]-%s' % (r['ext_id'],r[rec_name])
+                res.append((r['id'], name))
             else:
-                res = [(r['id'], r[rec_name]) ]
+                res.append((r['id'], r[rec_name]))
         return res
 res_partner()
 
